@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "baseUrl": "src",
+    "paths": {
+      "*": [
+        "src/*"
+      ]
+    },
+    "resolveJsonModule": true
+  },
+  "typeAcquisition": {
+    "include": [
+      "jest"
+    ]
+  }
+}
