@@ -10,6 +10,7 @@ export default StyleSheet.create({
     height: '100%'
   },
   overlay: {
+    position: 'absolute',
     backgroundColor: 'dodgerblue',
     opacity: 0.5,
     width: '100%',
