@@ -1,10 +1,13 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { Provider } from 'react-redux';
 
-import Menu from './components/Menu/index';
+import SectionSwitcher from './sectionSwitcher';
+import store from './store';
 
-export default function App() {
-  console.log('app running');
-  StatusBar.setBackgroundColor('dodgerblue');
-  return <Menu />;
+export default function Bolonki() {
+  return (
+    <Provider store={store}>
+      <SectionSwitcher />
+    </Provider>
+  );
 }
