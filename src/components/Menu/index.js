@@ -11,10 +11,10 @@ export default function Menu() {
       <View style={style.overlay}></View>
       <Text style={style.title}>Bolonki</Text>
 
-      <View style={[style.button, style.createMatchButton]}>
+      <View style={[style.button, style.createMapButton]}>
         <Text style={style.buttonText}>Crear Mapa</Text>
       </View>
-      <View style={[style.button, style.joinMatchButton]}>
+      <View style={[style.button, style.createMatchButton]}>
         <Text style={style.buttonText}>Crear Partida</Text>
       </View>
       <View style={[style.button, style.joinMatchButton]}>

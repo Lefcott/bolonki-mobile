@@ -39,7 +39,6 @@ export default StyleSheet.create({
     top: -25
   },
   button: {
-    backgroundColor: 'dodgerblue',
     flex: 1,
     aspectRatio: 1,
     borderTopLeftRadius: 17,
@@ -49,8 +48,13 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row'
   },
-  createMatchButton: {},
-  joinMatchButton: {
+  createMapButton: {
     backgroundColor: 'gold'
-  }
+  },
+  createMatchButton: {
+    backgroundColor: 'dodgerblue'
+  },
+  joinMatchButton: {
+    backgroundColor: 'lime'
+  },
 });
