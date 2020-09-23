@@ -25,6 +25,18 @@ export default StyleSheet.create({
     color: '#008',
     paddingTop: StatusBar.currentHeight
   },
+  polygon: {
+    position: 'absolute',
+    right: 0,
+    top: 20,
+    opacity: 0.77
+  },
+  buttonText: {
+    textAlign: 'center',
+    fontSize: 30,
+    flex: 1,
+    top: -25
+  },
   button: {
     backgroundColor: 'dodgerblue',
     flex: 1,
@@ -35,12 +47,6 @@ export default StyleSheet.create({
     borderBottomRightRadius: 5,
     alignItems: 'center',
     flexDirection: 'row'
-  },
-  buttonText: {
-    textAlign: 'center',
-    fontSize: 30,
-    flex: 1,
-    top: -25
   },
   createMatchButton: {},
   joinMatchButton: {
