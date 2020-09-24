@@ -9,23 +9,15 @@ export default function PolygonMap(props) {
     Polygons: [
       {
         Sides: 4,
-        AdjacentPolygons: [-1, -1, -1, 1]
+        AdjacentPolygons: [1, -1, -1, -1]
       },
       {
         Sides: 3,
-        AdjacentPolygons: [0, 2, -1]
+        AdjacentPolygons: [2, -1, 0]
       },
       {
         Sides: 3,
-        AdjacentPolygons: [1, 3, -1]
-      },
-      {
-        Sides: 3,
-        AdjacentPolygons: [2, 4, -1]
-      },
-      {
-        Sides: 4,
-        AdjacentPolygons: [3, -1, -1, -1]
+        AdjacentPolygons: [1, -1, -1]
       }
     ]
   };
@@ -42,7 +34,7 @@ export default function PolygonMap(props) {
           <Polygon
             points={strPoints}
             fill="lime"
-            rotation={angle*0}
+            rotation={angle * 0}
             originX={points[0].x}
             originY={points[0].y}
             stroke="#fed"
