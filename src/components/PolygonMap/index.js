@@ -9,7 +9,7 @@ export default function PolygonMap(props) {
     Polygons: [
       {
         Sides: 4,
-        AdjacentPolygons: [-1, -1, -1, -1]
+        AdjacentPolygons: [1, -1, -1, -1]
       },
       {
         Sides: 4,
@@ -21,9 +21,9 @@ export default function PolygonMap(props) {
   log('Points', JSON.stringify(polygonPoints));
 
   return (
-    <Svg height="100%" width="100%" viewBox="0 0 400 400" style={style.polygon}>
+    <Svg height="100%" width="100%" viewBox="0 0 400 400" originX={0} originY={0} style={style.polygon}>
       {polygonPoints.map((points, i) => (
-        <Polygon points="0,0 50,0 50,-50 0,-50" fill="lime" stroke="#fed" strokeWidth={5} key={i} />
+        <Polygon points={points} fill="lime" stroke="#fed" strokeWidth={5} key={i} />
       ))}
     </Svg>
   );
