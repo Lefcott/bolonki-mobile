@@ -96,6 +96,20 @@
       }
     ],
     "react/destructuring-assignment": "off",
-    "import/no-cycle": "off"
+    "import/no-cycle": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/no-array-index-key": "off",
+    "no-eval": "off",
+    "no-bitwise": "off"
   }
 }

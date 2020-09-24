@@ -16,6 +16,9 @@ export default function Menu() {
       <View style={style.overlay}></View>
       <Text style={style.title}>Bolonki</Text>
       <TouchableOpacity
+        delayLongPress={0}
+        delayPressIn={0}
+        delayPressOut={0}
         style={[style.button, style.createMapButton]}
         onPress={() => dispatch(sectionActions.setSection(SECTIONS.CREATE_MAP))}
       >

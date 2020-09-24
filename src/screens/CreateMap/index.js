@@ -8,6 +8,7 @@ import style from './style';
 import { useDispatch } from 'react-redux';
 import { sectionActions } from '../../store/actions';
 import { SECTIONS } from '../../store/constants';
+import PolygonMap from '../../components/PolygonMap';
 
 export default function CreateMap() {
   const dispatch = useDispatch();
@@ -33,9 +34,7 @@ export default function CreateMap() {
       </View>
       <ImageBackground source={background} style={style.container}>
         <View style={style.overlay}></View>
-        <Svg height="50%" width="50%" viewBox="0 0 100 100" style={style.polygon}>
-          <Polygon points="40,5 70,80 25,95" fill="lime"></Polygon>
-        </Svg>
+        <PolygonMap></PolygonMap>
       </ImageBackground>
     </>
   );
