@@ -4,7 +4,7 @@ const sideLen = 50;
 type Point = { x: Number, y: Number };
 type Polygon = { Sides: Number, AdjacentPolygons: [Number] };
 
-export const mapPolygonToPoints = (polygon: Polygon, initialPoint: Point) => {
+export const mapPolygonToPoints = (polygon: Polygon, initialPoint: Point, initialAngle: Number) => {
   const points = [initialPoint];
   const externalAngleSum = Math.PI - getAngle(polygon.Sides);
 
@@ -12,8 +12,8 @@ export const mapPolygonToPoints = (polygon: Polygon, initialPoint: Point) => {
     .fill()
     .forEach((_, side) => {
       if (side === 0) return;
-      const lastPoint = points[side - 1];
-      const currentExternalAngle = (side - 1) * externalAngleSum;
+      const lastPoint = points[points.length - 1];
+      const currentExternalAngle = (side - 1) * externalAngleSum - initialAngle;
 
       points.push({
         x: +(lastPoint.x + sideLen * Math.cos(currentExternalAngle)).toFixed(14),
@@ -33,18 +33,19 @@ export const mapPolygonsToPoints = (polygons: [Polygon], initialPoint: Point) =>
     const initialPolygon = polygons[initialPolygonIndex];
     const externalAngleSum = Math.PI - getAngle(initialPolygon.Sides);
 
-    const currentPoints = mapPolygonToPoints(initialPolygon, currentPoint);
+    const currentPoints = mapPolygonToPoints(initialPolygon, currentPoint, currentAngle);
     points[initialPolygonIndex] = currentPoints;
     angles[initialPolygonIndex] = currentAngle;
 
     initialPolygon.AdjacentPolygons.forEach((pIndex, sideIndex) => {
       if (pIndex === -1) return; // If there is no adjacent polygon
       const nextPolygon = polygons[pIndex];
-      const nextAngleSum = getAngle(nextPolygon.Sides);
-      const angle = currentAngle + externalAngleSum * sideIndex - nextAngleSum;
+      const nextInternalAngleSum = getAngle(nextPolygon.Sides);
+      const angle = currentAngle + nextInternalAngleSum - externalAngleSum * sideIndex;
       const point = currentPoints[sideIndex];
 
       if (points[pIndex]) return;
+      log('attach at point', point.x, point.y, 'at angle', (angle / Math.PI) * 180, 'at side', sideIndex);
       _mapPolygonsToPoints(pIndex, angle, point);
     });
   };
