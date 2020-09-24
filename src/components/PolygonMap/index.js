@@ -55,7 +55,7 @@ export default function PolygonMap(props) {
             originX={points[0].x}
             originY={points[0].y}
             stroke="#fed"
-            strokeWidth={5}
+            strokeWidth={3}
             key={i}
           />
         );
