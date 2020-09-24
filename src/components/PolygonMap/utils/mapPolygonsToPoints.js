@@ -26,7 +26,6 @@ export const mapPolygonToPoints = (polygon: Polygon, initialPoint: Point, initia
 
 export const mapPolygonsToPoints = (polygons: [Polygon], initialPoint: Point) => {
   const points = {};
-  const angles = {};
 
   const _mapPolygonsToPoints = (initialPolygonIndex, currentAngle, currentPoint: Point) => {
     points[initialPolygonIndex] = true; // Indicate it's taken
@@ -35,7 +34,6 @@ export const mapPolygonsToPoints = (polygons: [Polygon], initialPoint: Point) =>
 
     const currentPoints = mapPolygonToPoints(initialPolygon, currentPoint, currentAngle);
     points[initialPolygonIndex] = currentPoints;
-    angles[initialPolygonIndex] = currentAngle;
 
     if (initialPolygonIndex !== 0)
       initialPolygon.AdjacentPolygons.push(initialPolygon.AdjacentPolygons.shift());
@@ -47,12 +45,11 @@ export const mapPolygonsToPoints = (polygons: [Polygon], initialPoint: Point) =>
       const point = currentPoints[sideIndex];
 
       if (points[pIndex]) return;
-      log('attach at point', point.x, point.y, 'at angle', (angle / Math.PI) * 180, 'at side', sideIndex);
       _mapPolygonsToPoints(pIndex, angle, point);
     });
   };
 
   _mapPolygonsToPoints(0, 0, initialPoint);
 
-  return Object.keys(points).map(i => ({ angle: (-angles[i] / Math.PI) * 180, points: points[i] }));
+  return Object.keys(points).map(i => ({ points: points[i] }));
 };
