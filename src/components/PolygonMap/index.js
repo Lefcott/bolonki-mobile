@@ -9,16 +9,20 @@ export default function PolygonMap(props) {
     Polygons: [
       {
         Sides: 6,
-        AdjacentPolygons: [1, -1, -1, -1]
+        AdjacentPolygons: [2, -1, -1, -1, -1, 1]
       },
       {
         Sides: 6,
-        AdjacentPolygons: [1, -1, -1, -1]
+        AdjacentPolygons: [1, -1, -1, -1, -1, -1]
+      },
+      {
+        Sides: 4,
+        AdjacentPolygons: [1, -1, -1, 3]
+      },
+      {
+        Sides: 4,
+        AdjacentPolygons: [2, -1, -1, -1]
       }
-      // {
-      //   Sides: 5,
-      //   AdjacentPolygons: [-1, -1, -1, -1]
-      // }
     ]
   };
   log('Getting points...');
