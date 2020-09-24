@@ -24,7 +24,7 @@ export const mapPolygonToPoints = (polygon: Polygon, initialAngle = 0, initialPo
   return points;
 };
 
-export const mapPolygonsToPoints = polygons => {
+export const mapPolygonsToPoints = (polygons: [Polygon], initialPoint: Point) => {
   const points = {};
 
   const _mapPolygonsToPoints = (initialPolygonIndex, currentAngle, currentPoint: Point) => {
@@ -45,7 +45,7 @@ export const mapPolygonsToPoints = polygons => {
     });
   };
 
-  _mapPolygonsToPoints(0, 0, { x: 0, y: 0 });
+  _mapPolygonsToPoints(0, 0, initialPoint);
 
   const indexes = Object.keys(points);
   return indexes.map(i => points[i].map(point => `${point.x},${point.y}`).join(' '));

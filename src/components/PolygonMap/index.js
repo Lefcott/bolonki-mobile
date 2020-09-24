@@ -17,7 +17,7 @@ export default function PolygonMap(props) {
       }
     ]
   };
-  const polygonPoints = mapPolygonsToPoints(map.Polygons);
+  const polygonPoints = mapPolygonsToPoints(map.Polygons, {x: 50, y: 50});
   log('Points', JSON.stringify(polygonPoints));
 
   return (
