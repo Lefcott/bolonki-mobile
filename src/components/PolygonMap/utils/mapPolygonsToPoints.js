@@ -37,6 +37,8 @@ export const mapPolygonsToPoints = (polygons: [Polygon], initialPoint: Point) =>
     points[initialPolygonIndex] = currentPoints;
     angles[initialPolygonIndex] = currentAngle;
 
+    if (initialPolygonIndex !== 0)
+      initialPolygon.AdjacentPolygons.push(initialPolygon.AdjacentPolygons.shift());
     initialPolygon.AdjacentPolygons.forEach((pIndex, sideIndex) => {
       if (pIndex === -1) return; // If there is no adjacent polygon
       const nextPolygon = polygons[pIndex];

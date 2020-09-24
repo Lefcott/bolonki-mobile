@@ -13,7 +13,11 @@ export default function PolygonMap(props) {
       },
       {
         Sides: 3,
-        AdjacentPolygons: [2, -1, 0]
+        AdjacentPolygons: [0, 2, 3]
+      },
+      {
+        Sides: 3,
+        AdjacentPolygons: [1, -1, -1]
       },
       {
         Sides: 3,
