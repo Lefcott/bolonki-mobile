@@ -8,7 +8,7 @@ export default function PolygonMap(props) {
   const map = {
     Polygons: [
       {
-        Sides: 4,
+        Sides: 6,
         AdjacentPolygons: [1, -1, -1, -1]
       },
       {
@@ -28,7 +28,6 @@ export default function PolygonMap(props) {
     <Svg height="100%" width="100%" viewBox="0 0 400 400" originX={0} originY={0} style={style.polygon}>
       {polygonPoints.map((polygon, i) => {
         const { angle, points } = polygon;
-        log('got angle', angle);
         const strPoints = points.map(point => `${point.x},${point.y}`).join(' ');
 
         return (

@@ -6,7 +6,7 @@ type Polygon = { Sides: Number, AdjacentPolygons: [Number] };
 
 export const mapPolygonToPoints = (polygon: Polygon, initialPoint: Point) => {
   const points = [initialPoint];
-  const angleSum = getAngle(polygon.Sides);
+  const externalAngleSum = Math.PI - getAngle(polygon.Sides);
 
   let lastAngle;
   Array(polygon.Sides)
@@ -14,12 +14,12 @@ export const mapPolygonToPoints = (polygon: Polygon, initialPoint: Point) => {
     .forEach((_, side) => {
       if (side === 0) return;
       const lastPoint = points[side - 1];
-      const currentAngle = /*(lastAngle ? -Math.PI + lastAngle : 0)*/ +(side - 1) * angleSum;
-      lastAngle = currentAngle;
+      const currentExternalAngle = (side - 1) * externalAngleSum;
+      lastAngle = currentExternalAngle;
 
       points.push({
-        x: +(lastPoint.x + sideLen * Math.cos(currentAngle)).toFixed(14),
-        y: +(lastPoint.y - sideLen * Math.sin(currentAngle)).toFixed(14)
+        x: +(lastPoint.x + sideLen * Math.cos(currentExternalAngle)).toFixed(14),
+        y: +(lastPoint.y - sideLen * Math.sin(currentExternalAngle)).toFixed(14)
       });
     });
 
