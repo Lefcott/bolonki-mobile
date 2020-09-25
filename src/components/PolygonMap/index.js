@@ -22,8 +22,6 @@ export default function PolygonMap(props) {
       height="100%"
       width="100%"
       viewBox="0 0 400 400"
-      originX={0}
-      originY={0}
       style={style.polygon}
       onPress={handleMapPress}
     >
