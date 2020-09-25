@@ -9,9 +9,30 @@ import { useDispatch } from 'react-redux';
 import { sectionActions } from '../../store/actions';
 import { SECTIONS } from '../../store/constants';
 import PolygonMap from '../../components/PolygonMap';
+import { polygonActions } from '../../store/actions';
 
 export default function CreateMap() {
   const dispatch = useDispatch();
+  dispatch(
+    polygonActions.setPolygons([
+      {
+        Sides: 4,
+        AdjacentPolygons: [1, -1, -1, -1]
+      },
+      {
+        Sides: 3,
+        AdjacentPolygons: [2, 3, 0]
+      },
+      {
+        Sides: 3,
+        AdjacentPolygons: [1, -1, -1]
+      },
+      {
+        Sides: 3,
+        AdjacentPolygons: [1, -1, -1]
+      }
+    ])
+  );
 
   useEffect(() => {
     const goBack = () => dispatch(sectionActions.setSection(SECTIONS.MENU));

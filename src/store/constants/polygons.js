@@ -1,0 +1,3 @@
+export const POLYGON_ACTIONS = {
+  SET_POLYGONS: 'SET_POLYGONS'
+};
