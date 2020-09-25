@@ -16,11 +16,17 @@ export default function PolygonMap(props) {
   const handleMapPress = ({ nativeEvent }) => {
     const { locationX: x, locationY: y } = nativeEvent;
     const pointsToAdd = getPointsToAdd(polygonData, 4, { x, y });
-    // log('pointsToAdd', pointsToAdd);
   };
 
   return (
-    <Svg height="100%" width="100%" viewBox="0 0 400 400" preserveAspectRatio="xMidYMin meet" style={style.polygon} onPress={handleMapPress}>
+    <Svg
+      height="100%"
+      width="100%"
+      viewBox="0 0 400 400"
+      preserveAspectRatio="xMidYMin meet"
+      style={style.polygon}
+      onPress={handleMapPress}
+    >
       {polygonData.map((polygon, i) => {
         const { points } = polygon;
         const strPoints = points.map(point => `${point.x},${point.y}`).join(' ');
