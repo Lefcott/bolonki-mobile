@@ -17,20 +17,20 @@ export default function CreateMap() {
     polygonActions.setPolygons([
       {
         Sides: 4,
-        AdjacentPolygons: [1, -1, -1, -1]
+        AdjacentPolygons: [-1, -1, -1, -1]
       },
-      {
-        Sides: 3,
-        AdjacentPolygons: [2, 3, 0]
-      },
-      {
-        Sides: 3,
-        AdjacentPolygons: [1, -1, -1]
-      },
-      {
-        Sides: 3,
-        AdjacentPolygons: [1, -1, -1]
-      }
+      // {
+      //   Sides: 3,
+      //   AdjacentPolygons: [2, 3, 0]
+      // },
+      // {
+      //   Sides: 3,
+      //   AdjacentPolygons: [1, -1, -1]
+      // },
+      // {
+      //   Sides: 3,
+      //   AdjacentPolygons: [1, -1, -1]
+      // }
     ])
   );
 
