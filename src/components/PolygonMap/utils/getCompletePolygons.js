@@ -33,7 +33,8 @@ export const getCompletePolygons = (polygons: Polygon[], initialPoint: Point) =>
 
   if (polygons.length) _mapPolygonsToPoints(0, 0, initialPoint);
   const completePolygons = Object.keys(completePolygonsByIndex).map(i => completePolygonsByIndex[i]);
-  log('Adjacents', getAdjacents(completePolygons));
+  const adjacents = getAdjacents(completePolygons);
+  completePolygons.forEach((polygon, i) => (polygon.AdjacentPolygons = adjacents[i]));
 
   return completePolygons;
 };
