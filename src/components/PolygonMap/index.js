@@ -13,7 +13,7 @@ export default function PolygonMap(props) {
 
   const handleMapPress = ({ nativeEvent }) => {
     const { locationX: x, locationY: y } = nativeEvent;
-    const nearPolygon = getNearPolygon(polygons, 5, { x, y });
+    const nearPolygon = getNearPolygon(polygons, sides, { x, y });
     props.onPolygonAdded(nearPolygon, sides);
   };
 
