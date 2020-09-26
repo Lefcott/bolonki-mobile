@@ -53,12 +53,14 @@ export default function CreateMap() {
     const _polygons = [...polygons];
     const oldPolygon = _polygons[nearPolygon.polygonIndex];
 
+    const newAdjacentPolygons = Array(sides).fill(-1);
+    newAdjacentPolygons[newAdjacentPolygons.length - 1] = nearPolygon.polygonIndex;
     const newPolygons = [
       ...changeIndexBy(polygons, nearPolygon.polygonIndex, {
         ...oldPolygon,
         AdjacentPolygons: changeIndexBy(oldPolygon.AdjacentPolygons, nearPolygon.sideIndex, polygons.length)
       }),
-      { Sides: sides, AdjacentPolygons: Array(sides).fill(-1) }
+      { Sides: sides, AdjacentPolygons: newAdjacentPolygons }
     ];
     setPolygons(PolygonMap.getCompletePolygons(newPolygons, initialPoint));
   };
