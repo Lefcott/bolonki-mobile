@@ -24,12 +24,12 @@ export default function CreateMap() {
         [
           {
             Sides: 4,
-            AdjacentPolygons: [-1, -1, -1, -1]
-          }
-          // {
-          //   Sides: 3,
-          //   AdjacentPolygons: [2, 3, 0]
-          // },
+            AdjacentPolygons: [1, -1, -1, -1]
+          },
+          {
+            Sides: 3,
+            AdjacentPolygons: [0, -1, -1]
+          },
           // {
           //   Sides: 3,
           //   AdjacentPolygons: [1, -1, -1]
