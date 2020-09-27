@@ -29,7 +29,7 @@ export default function CreateMap() {
           {
             Sides: 3,
             AdjacentPolygons: [0, -1, -1]
-          },
+          }
           // {
           //   Sides: 3,
           //   AdjacentPolygons: [1, -1, -1]
@@ -50,8 +50,7 @@ export default function CreateMap() {
   }, []);
 
   const handleAddPolygon = (nearPolygon, sides: Number) => {
-    const _polygons = [...polygons];
-    const oldPolygon = _polygons[nearPolygon.polygonIndex];
+    const oldPolygon = polygons[nearPolygon.polygonIndex];
 
     const newAdjacentPolygons = Array(sides).fill(-1);
     newAdjacentPolygons[newAdjacentPolygons.length - 1] = nearPolygon.polygonIndex;
@@ -62,6 +61,13 @@ export default function CreateMap() {
       }),
       { Sides: sides, AdjacentPolygons: newAdjacentPolygons }
     ];
+    // log(
+    //   'changed adj polygons',
+    //   changeIndexBy(oldPolygon.AdjacentPolygons, nearPolygon.sideIndex, polygons.length)
+    // );
+    // log('new adj polygons', newAdjacentPolygons);
+    // log('new polygons', newPolygons);
+    // log('new map', PolygonMap.getCompletePolygons(newPolygons, initialPoint));
     setPolygons(PolygonMap.getCompletePolygons(newPolygons, initialPoint));
   };
 

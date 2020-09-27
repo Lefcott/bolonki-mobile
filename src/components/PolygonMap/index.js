@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Svg, { Polygon } from 'react-native-svg';
+
+import Svg, { Polygon, Text } from 'react-native-svg';
 import PropTypes from 'prop-types';
 
 import { getCompletePolygons } from './utils/getCompletePolygons';
@@ -30,7 +31,21 @@ export default function PolygonMap(props) {
         const { points } = polygon;
         const strPoints = points.map(point => `${point.x},${point.y}`).join(' ');
 
-        return <Polygon points={strPoints} fill="lime" stroke="#fed" strokeWidth={3} key={i} />;
+        return (
+          <>
+            <Polygon points={strPoints} fill="lime" stroke="#fed" strokeWidth={3} key={i}></Polygon>
+            <Text
+              x={Math.min(...points.map(p => p.x)) + 15}
+              y={Math.min(...points.map(p => p.y)) + 25}
+              text="middle"
+              fill="white"
+              fontSize="30"
+              key={i + polygons.length + 1}
+            >
+              {i}
+            </Text>
+          </>
+        );
       })}
     </Svg>
   );
