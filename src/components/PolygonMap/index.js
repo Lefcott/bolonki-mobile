@@ -59,7 +59,8 @@ export default function PolygonMap(props) {
         minimumTrackTintColor="#FFFFFF"
         maximumTrackTintColor="#000000"
         key={1}
-        onValueChange={value => log(value)}
+        value={sides}
+        onValueChange={value => setSides(value)}
       />
     </>
   );
