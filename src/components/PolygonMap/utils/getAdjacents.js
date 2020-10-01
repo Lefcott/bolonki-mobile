@@ -4,7 +4,6 @@ import { arePointsNear } from '../../../utils/number';
 const getLastPoint = (points, index) => (index === 0 ? points[points.length - 1] : points[index - 1]);
 
 export const getAdjacents = (polygons: PolygonData[]) => {
-  log('getAdjacents');
   const adjacentsByPolygon = {};
   polygons.forEach((polygon, polygonIndex) => {
     adjacentsByPolygon[polygonIndex] = Array(polygon.Sides).fill(-1);

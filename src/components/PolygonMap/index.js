@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Slider from '@react-native-community/slider';
 
 import Svg, { Polygon, Text } from 'react-native-svg';
 import PropTypes from 'prop-types';
@@ -19,35 +20,48 @@ export default function PolygonMap(props) {
   };
 
   return (
-    <Svg
-      height="100%"
-      width="100%"
-      viewBox="0 0 400 400"
-      preserveAspectRatio="xMidYMin meet"
-      style={style.polygon}
-      onPress={handleMapPress}
-    >
-      {polygons.map((polygon, i) => {
-        const { points } = polygon;
-        const strPoints = points.map(point => `${point.x},${point.y}`).join(' ');
+    <>
+      <Svg
+        height="100%"
+        width="100%"
+        viewBox="0 0 400 400"
+        preserveAspectRatio="xMidYMin meet"
+        style={style.polygon}
+        onPress={handleMapPress}
+        key={2}
+      >
+        {polygons.map((polygon, i) => {
+          const { points } = polygon;
+          const strPoints = points.map(point => `${point.x},${point.y}`).join(' ');
 
-        return (
-          <>
-            <Polygon points={strPoints} fill="lime" stroke="#fed" strokeWidth={3} key={i}></Polygon>
-            <Text
-              x={Math.min(...points.map(p => p.x)) + 15}
-              y={Math.min(...points.map(p => p.y)) + 25}
-              text="middle"
-              fill="white"
-              fontSize="30"
-              key={i + polygons.length + 1}
-            >
-              {i}
-            </Text>
-          </>
-        );
-      })}
-    </Svg>
+          return (
+            <>
+              <Polygon points={strPoints} fill="lime" stroke="#fed" strokeWidth={3} key={i}></Polygon>
+              <Text
+                x={Math.min(...points.map(p => p.x)) + 15}
+                y={Math.min(...points.map(p => p.y)) + 25}
+                text="middle"
+                fill="white"
+                fontSize="30"
+                key={i + polygons.length + 1}
+              >
+                {i}
+              </Text>
+            </>
+          );
+        })}
+      </Svg>
+      <Slider
+        style={style.slider}
+        minimumValue={3}
+        maximumValue={10}
+        step={1}
+        minimumTrackTintColor="#FFFFFF"
+        maximumTrackTintColor="#000000"
+        key={1}
+        onValueChange={value => log(value)}
+      />
+    </>
   );
 }
 PolygonMap.propTypes = {
