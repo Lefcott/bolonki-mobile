@@ -30,14 +30,6 @@ export default function CreateMap() {
             Sides: 3,
             AdjacentPolygons: [0, -1, -1]
           }
-          // {
-          //   Sides: 3,
-          //   AdjacentPolygons: [1, -1, -1]
-          // },
-          // {
-          //   Sides: 3,
-          //   AdjacentPolygons: [1, -1, -1]
-          // }
         ],
         initialPoint
       )
@@ -61,13 +53,6 @@ export default function CreateMap() {
       }),
       { Sides: sides, AdjacentPolygons: newAdjacentPolygons }
     ];
-    // log(
-    //   'changed adj polygons',
-    //   changeIndexBy(oldPolygon.AdjacentPolygons, nearPolygon.sideIndex, polygons.length)
-    // );
-    // log('new adj polygons', newAdjacentPolygons);
-    // log('new polygons', newPolygons);
-    // log('new map', PolygonMap.getCompletePolygons(newPolygons, initialPoint));
     setPolygons(PolygonMap.getCompletePolygons(newPolygons, initialPoint));
   };
 

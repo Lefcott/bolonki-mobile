@@ -1,4 +1,7 @@
 import type { Point, PolygonData } from '../types';
+import { arePointsNear } from '../../../utils/number';
+
+const getLastPoint = (points, index) => (index === 0 ? points[points.length - 1] : points[index - 1]);
 
 export const getNearPolygon = (completePolygons: PolygonData[], mousePoint: Point) => {
   let minDistance: Number;
@@ -20,6 +23,5 @@ export const getNearPolygon = (completePolygons: PolygonData[], mousePoint: Poin
     });
   });
 
-  log('polygon on', minDistancePolygonIndex, ':', minDistanceSideIndex);
   return { polygonIndex: minDistancePolygonIndex, sideIndex: minDistanceSideIndex };
 };
