@@ -18,7 +18,6 @@ export default function PolygonMap(props) {
   const examplePolygonPoints = getPoints(sides, { x: 0, y: 0 }, 0, examplePolygonSize);
   examplePolygonPoints.forEach(point => (point.y += examplePolygonSize));
   const examplePolygonStrPoints = getStrPoints(examplePolygonPoints);
-  log('examplePolygonStrPoints', examplePolygonStrPoints);
   log('Getting points.........');
 
   const handleMapPress = ({ nativeEvent }) => {
