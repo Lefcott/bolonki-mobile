@@ -6,12 +6,19 @@ import PropTypes from 'prop-types';
 
 import { getCompletePolygons } from './utils/getCompletePolygons';
 import { getNearPolygon } from './utils/getNearPolyon';
+import { getPoints, getStrPoints } from './utils/getPoints';
+import { examplePolygonSize } from './constants';
 import style from './style';
 import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
+import { View } from 'react-native';
 
 export default function PolygonMap(props) {
   const { polygons } = props;
   const [sides, setSides] = useState(4);
+  const examplePolygonPoints = getPoints(sides, { x: 0, y: 0 }, 0, examplePolygonSize);
+  examplePolygonPoints.forEach(point => (point.y += examplePolygonSize));
+  const examplePolygonStrPoints = getStrPoints(examplePolygonPoints);
+  log('examplePolygonStrPoints', examplePolygonStrPoints);
   log('Getting points.........');
 
   const handleMapPress = ({ nativeEvent }) => {
@@ -41,7 +48,7 @@ export default function PolygonMap(props) {
         >
           {polygons.map((polygon, i) => {
             const { points } = polygon;
-            const strPoints = points.map(point => `${point.x},${point.y}`).join(' ');
+            const strPoints = getStrPoints(points);
 
             return (
               <>
@@ -61,6 +68,17 @@ export default function PolygonMap(props) {
           })}
         </Svg>
       </ReactNativeZoomableView>
+      <Svg
+        height={examplePolygonSize}
+        width={examplePolygonSize}
+        viewBox={`${-examplePolygonSize / 2} ${-examplePolygonSize / 2} ${examplePolygonSize * 2} ${
+          examplePolygonSize * 2
+        }`}
+        preserveAspectRatio="xMidYMin meet"
+        style={style.polygonExample}
+      >
+        <Polygon points={examplePolygonStrPoints} fill="darkviolet" stroke="violet" strokeWidth={3}></Polygon>
+      </Svg>
       <Slider
         style={style.slider}
         minimumValue={3}
@@ -72,6 +90,9 @@ export default function PolygonMap(props) {
         value={sides}
         onValueChange={value => setSides(value)}
       />
+      <View style={style.sidesText}>
+        <Text>{sides}asdf</Text>
+      </View>
     </>
   );
 }
