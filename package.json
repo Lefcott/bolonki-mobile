@@ -8,7 +8,9 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@dudigital/react-native-zoomable-view": "^1.0.15",
     "@react-native-community/hooks": "^2.6.0",
+    "@react-native-community/slider": "3.0.3",
     "debug": "^4.2.0",
     "expo": "~39.0.2",
     "expo-status-bar": "~1.0.2",
@@ -19,7 +21,7 @@
     "react-native-web": "~0.13.12",
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
-    "@react-native-community/slider": "3.0.3"
+    "undefined": "@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
