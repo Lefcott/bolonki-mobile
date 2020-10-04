@@ -11,7 +11,7 @@ export default StyleSheet.create({
   },
   navbar: {
     width: '100%',
-    height: 80,
+    height: 100,
     backgroundColor: 'dodgerblue',
     paddingTop: StatusBar.currentHeight
   },
