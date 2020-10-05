@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { View, Dimensions } from 'react-native';
+
 import Svg, { Polygon, Defs, LinearGradient, Stop } from 'react-native-svg';
 import PropTypes from 'prop-types';
 import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
@@ -8,22 +10,28 @@ import { getCompletePolygons } from './utils/getCompletePolygons';
 import { getNearPolygon } from './utils/getNearPolyon';
 import { getPoints, getStrPoints } from './utils/getPoints';
 import { examplePolygonSize } from './constants';
+import { areNumbersNear } from '../../utils/number';
 import style from './style';
-import { View } from 'react-native';
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 let lastX = null;
 let lastY = null;
+let initialDiffX = null;
+let initialDiffY = null;
+let moved = false;
 
 export default function PolygonMap(props) {
   const { polygons } = props;
   const [sides, setSides] = useState(4);
   const [selectedPolygon, setSelectedPolygon] = useState(null);
-  log('Getting points.........');
+  const [xOffset, setXOffset] = useState(0);
+  const [yOffset, setYOffset] = useState(0);
 
   const handleMapPress = ({ nativeEvent }) => {
-    log('Hande Map Press');
-    if (lastX !== null && lastY !== null) return;
-    const { locationX: x, locationY: y } = nativeEvent;
+    if (moved) return;
+    const x = nativeEvent.locationX - xOffset;
+    const y = nativeEvent.locationY - yOffset;
     const nearPolygon = getNearPolygon(polygons, { x, y });
     props.onPolygonAdded(nearPolygon, sides);
   };
@@ -32,13 +40,22 @@ export default function PolygonMap(props) {
     if (lastX === null && lastY === null) {
       lastX = x;
       lastY = y;
+      initialDiffX = x - xOffset;
+      initialDiffY = y - yOffset;
       return;
     }
+    const diffX = x - lastX;
+    const diffY = y - lastY;
+    if (!moved) moved = !areNumbersNear(diffX, 0, 10) || !areNumbersNear(diffY, 0, 10);
+    setXOffset(x - initialDiffX);
+    setYOffset(y - initialDiffY);
   };
   const handleEndSlide = () => {
     lastX = null;
     lastY = null;
-    log('End Slide');
+    initialDiffX = null;
+    initialDiffY = null;
+    moved = false;
   };
 
   return (
@@ -54,7 +71,8 @@ export default function PolygonMap(props) {
       <Svg
         height="100%"
         width="100%"
-        viewBox="0 0 400 400"
+        viewBox={`${-xOffset} ${-yOffset} 400 400`}
+        // viewBox={`-20 -10 400 400`}
         preserveAspectRatio="xMidYMin meet"
         style={style.polygon}
         onTouchMove={handleSlide}
