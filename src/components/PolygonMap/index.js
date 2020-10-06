@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Dimensions } from 'react-native';
 
 import Svg, { Polygon, Defs, LinearGradient, Stop } from 'react-native-svg';
@@ -7,6 +7,7 @@ import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/R
 
 import PolygonMapSlider from './components/PolygonMapSlider';
 import { getCompletePolygons } from './utils/getCompletePolygons';
+import { getCenteredOffsets } from './utils/getCenteredOffsets';
 import { getNearPolygon } from './utils/getNearPolyon';
 import { getPoints, getStrPoints } from './utils/getPoints';
 import { examplePolygonSize } from './constants';
@@ -27,6 +28,12 @@ export default function PolygonMap(props) {
   const [selectedPolygon, setSelectedPolygon] = useState(null);
   const [xOffset, setXOffset] = useState(0);
   const [yOffset, setYOffset] = useState(0);
+
+  useEffect(() => {
+    const offsets = getCenteredOffsets(windowWidth, windowHeight, polygons);
+    setXOffset(offsets.x);
+    setYOffset(offsets.y);
+  }, []);
 
   const handleMapPress = ({ nativeEvent }) => {
     if (moved) return;
